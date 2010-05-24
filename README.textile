@@ -1,0 +1,3 @@
+LookInTehCorner evolved from Haste's oMinimap into this behemoth of baffling ridiculous code, I plan on rewriting it completely. 
+
+It's gotta be *small*, *light* and copy most minimap functions on its own without much ado. 
