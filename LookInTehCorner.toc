@@ -1,0 +1,18 @@
+## Interface: 30100
+## Title: Look In Teh Corner
+## Author: MoonWitch
+## Version: 1.2
+## X-eMail: kelly.crabbe@gmail.com
+## X-Website: http://other-net.com
+## X-Credits: Haste for his oMinimap which acted as the base. Lyn for the name!
+## Notes: Square minimap, with coords and the likes :P
+## X-Category: Map
+## OptionalDeps: Blizzard_TimeManager
+
+core.lua
+clock.lua
+compass.lua
+coordinates.lua
+#tooltip.lua
+rightclick.lua
+#instancing.lua
