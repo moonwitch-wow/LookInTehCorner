@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------------------------------
 --  Look In Teh Corner!  --
---  Big thanks to haste"s oMinimap on which this is based. 
---  I mainly added coordinates, changed some positions, 
+--  Big thanks to haste"s oMinimap on which this is based.
+--  I mainly added coordinates, changed some positions,
 --  but as per his copyright thingie, the addon has changed name.
 --  I would like to thank Lyn for the awesome name.
 ----------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ function GetMinimapShape() return "SQUARE" end
 
 -- Frame creation
 local LookInTehCorner = CreateFrame("Frame", "LookInTehCorner", Minimap)
-	
+
 local frames = {
 	MinimapBorder,
 	MinimapBorderTop,
@@ -47,14 +47,14 @@ LookInTehCorner.PLAYER_LOGIN = function(self)
 	Minimap:SetScript("OnDragStart", function(self) self:StartMoving() end)
 	Minimap:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
 	Minimap:SetFrameLevel(2)
-	
+
 	--self:SetParent(Minimap)
 	self:SetAllPoints(Minimap)
 	self:SetWidth(Minimap:GetWidth()*scale)
 	self:SetHeight(Minimap:GetHeight()*scale)
 	self:SetFrameLevel(1)
 	self:SetFrameStrata("BACKGROUND")
-	
+
 	Minimap:SetScale(scale)
 	Minimap:SetMaskTexture("Interface\\ChatFrame\\ChatFrameBackground")
 	Minimap:SetBackdrop({bgFile = "Interface\\ChatFrame\\ChatFrameBackground", insets = {
@@ -74,7 +74,7 @@ LookInTehCorner.PLAYER_LOGIN = function(self)
 			Minimap_ZoomOut()
 		end
 	end)
-	
+
 -- Tracking menu changes
 	MiniMapTrackingIconOverlay:SetAlpha(0)
 	MiniMapTrackingButtonBorder:Hide()
@@ -83,17 +83,17 @@ LookInTehCorner.PLAYER_LOGIN = function(self)
 	MiniMapTracking:ClearAllPoints()
 	MiniMapTracking:SetScale(.8)
 	MiniMapTracking:SetPoint("TOPLEFT", -2, 2)
-	
--- PvP Icon
+
+--[[ PvP Icon
 	MiniMapBattlefieldFrame:SetParent(Minimap)
 	MiniMapBattlefieldFrame:ClearAllPoints()
-	MiniMapBattlefieldFrame:SetPoint("TOPRIGHT", -2, -2)
+	MiniMapBattlefieldFrame:SetPoint("TOPRIGHT", -2, -2)]]
 
 -- Mail icon changes
 	MiniMapMailIcon:SetTexture("Interface\\AddOns\\LookInTehCorner\\media\\mail") -- remove this line if you want the default mail icon to show
 	MiniMapMailFrame:ClearAllPoints()
 	MiniMapMailFrame:SetPoint("BOTTOM", Minimap,"BOTTOM")
-  
+
 -- Minimap zone text stuff.
 	--MinimapZoneText:Hide() -- remove -- if you want to hide the ZoneText and add -- in front of the following lines.
 	MinimapZoneText:SetDrawLayer"OVERLAY"
@@ -103,30 +103,30 @@ LookInTehCorner.PLAYER_LOGIN = function(self)
 	MinimapZoneText:SetPoint("BOTTOM", Minimap, "TOP", 0, 5)
 	MinimapZoneText:SetFont(font, 11)
 	MinimapZoneText:SetJustifyH("CENTER")
-	
+
 -- World PvP Frame
-	if (WorldStateCaptureBar) then	  
+	if (WorldStateCaptureBar) then
 		WorldStateCaptureBar:ClearAllPoints()
 		WorldStateCaptureBar:SetPoint("TOP", UIParent, "TOP", -75, -50)
 		WorldStateCaptureBar.SetPoint = function() end
 		WorldStateCaptureBar.ClearAllPoints = function() end
 	end
-	
+
 	-- shitty 3.3 flag to move
 	MiniMapInstanceDifficulty:ClearAllPoints()
 	MiniMapInstanceDifficulty:SetParent(Minimap)
 	MiniMapInstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, 0)
 	MiniMapInstanceDifficulty:SetScale(.7)
-	
+
 	-- LFG Eye
 	MiniMapLFGFrame:ClearAllPoints()
 	MiniMapLFGFrame:SetParent(Minimap)
 	MiniMapLFGFrame:SetPoint("TOP", Minimap, 0, 0)
 	MiniMapLFGFrame:SetScale(1)
 	MiniMapLFGFrameBorder:Hide()
-	
+
 	--[[ Quest Watcher Frame
-	WatchFrame:ClearAllPoints()	
+	WatchFrame:ClearAllPoints()
 	WatchFrame.ClearAllPoints = function() end
 	WatchFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 20, -15)
 	WatchFrame.SetPoint = function() end
@@ -141,7 +141,7 @@ LookInTehCorner.PLAYER_LOGIN = function(self)
 	self:UnregisterEvent"ADDON_LOADED"
 end
 
-	
+
 -- Event handling
 LookInTehCorner:SetScript("OnEvent", function(self, event, ...) self[event](self) end)
 LookInTehCorner:RegisterEvent"PLAYER_LOGIN"
