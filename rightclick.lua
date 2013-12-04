@@ -30,10 +30,10 @@ local menuList = {
     end},
 }
 
-Minimap:SetScript("OnMouseUp", function(self, btn)
+Minimap:SetScript("OnMouseDown", function(self, btn)
 	if btn == "RightButton" then
 		ToggleDropDownMenu(1, nil, MiniMapTrackingDropDown, self)
-	elseif btn == "MiddleButton" then
+	elseif btn == "LeftButton" and IsShiftKeyDown() then
 		EasyMenu(menuList, menuFrame, "cursor", 0, 0, "MENU", 2)
 	else
 		Minimap_OnClick(self)
