@@ -25,7 +25,7 @@ local borderColor = { .6,.6,.6,1 }
 function GetMinimapShape() return "SQUARE" end
 
 -- Frame creation
-local LookInTehCorner = CreateFrame("Frame", "LookInTehCorner", Minimap)
+local LookInTehCorner, events = CreateFrame("Frame", "LookInTehCorner", Minimap), {}
 
 local frames = {
   MinimapBorder,
