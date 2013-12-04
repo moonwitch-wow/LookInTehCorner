@@ -122,6 +122,12 @@ function events:PLAYER_ENTERING_WORLD(...)
   MiniMapInstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, 0)
   MiniMapInstanceDifficulty:SetScale(.7)
 
+  -- 4.0.6 Guild instance difficulty
+  GuildInstanceDifficulty:ClearAllPoints()
+  GuildInstanceDifficulty:SetParent(Minimap)
+  GuildInstanceDifficulty:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 0, 0)
+  GuildInstanceDifficulty:SetScale(.7)
+
   -- LFG Eye
   MiniMapLFGFrame:SetParent(Minimap)
   MiniMapLFGFrame:SetHighlightTexture(nil)
