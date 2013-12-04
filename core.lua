@@ -16,7 +16,7 @@ local backdrop = {
     edgeFile = "Interface\\Buttons\\WHITE8x8",
     tiled = true,
     edgeSize = 1,
-    insets = { left = -1, right = -1, top = -1, bottom = -1}
+    insets = { left = -2, right = -2, top = -2, bottom = -2}
   }
 local backdropColor = { .1,.1,.1,1 }
 local borderColor = { .6,.6,.6,1 }
@@ -27,7 +27,7 @@ function GetMinimapShape() return "SQUARE" end
 -- Frame creation
 local LookInTehCorner, events = CreateFrame("Frame", "LookInTehCorner", Minimap), {}
 
-local frames = {
+local hiddenFrames = {
   MinimapBorder,
   MinimapBorderTop,
   MinimapToggleButton,
@@ -45,7 +45,7 @@ local frames = {
 }
 
 -- Frame fluff
-function events:PLAYER_ENTERING_WORLD(...)
+function events:PLAYER_LOGIN(...)
   Minimap:ClearAllPoints()
   Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -15, -15)
   Minimap:SetMovable(true)
@@ -67,7 +67,7 @@ function events:PLAYER_ENTERING_WORLD(...)
   Minimap:SetMaskTexture("Interface\\ChatFrame\\ChatFrameBackground")
   Minimap:SetBackdrop(backdrop)
   Minimap:SetBackdropColor(r, g, b, a)
-  Minimap:SetBackdropBorderColor(backdropColor.r, backdropColor.g, backdropColor.b)
+  Minimap:SetBackdropBorderColor(borderColor.r, borderColor.g, borderColor.b)
 
 -- mousewheel scrolling
   Minimap:EnableMouseWheel()
@@ -140,10 +140,10 @@ function events:PLAYER_ENTERING_WORLD(...)
   hooksecurefunc("EyeTemplate_OnUpdate", UpdateLFG)
 
 -- Frame hiding
-  for _, frame in pairs(frames) do
+  for _, frame in pairs(hiddenFrames) do
     frame:Hide()
   end
-  frames = nil
+  hiddenFrames = nil
 
   self:UnregisterEvent"ADDON_LOADED"
 end
@@ -153,6 +153,6 @@ end
 LookInTehCorner:SetScript("OnEvent", function(self, event, ...)
  events[event](self, ...) -- call one of the functions above
 end)
-LookInTehCorner:RegisterEvent"PLAYER_ENTERING_WORLD"
+LookInTehCorner:RegisterEvent"PLAYER_LOGIN"
 -- LookInTehCorner:RegisterEvent"CALENDAR_UPDATE_PENDING_INVITES"
 -- LookInTehCorner:RegisterEvent"UPDATE_PENDING_MAIL"
