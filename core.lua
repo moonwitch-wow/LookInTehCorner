@@ -41,12 +41,11 @@ local frames = {
   MiniMapMailBorder,
   BattlegroundShine,
   MiniMapZoneTextButton,
-  MiniMapLFGFrameBorder,
   GameTimeFrame
 }
 
 -- Frame fluff
-LookInTehCorner.PLAYER_LOGIN = function(self)
+function events:PLAYER_ENTERING_WORLD(...)
   Minimap:ClearAllPoints()
   Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -15, -15)
   Minimap:SetMovable(true)
