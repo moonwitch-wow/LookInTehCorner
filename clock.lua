@@ -41,7 +41,7 @@ TimeManagerClockTicker:SetTextColor(1, .8, 0)
 
 TimeManagerAlarmFiredTexture.Show = function() TimeManagerClockTicker:SetTextColor(1, 0, 0) end
 TimeManagerAlarmFiredTexture.Hide = function() TimeManagerClockTicker:SetTextColor(1, 1, 1) end
-   
+
 local clockFlash = select(3, TimeManagerClockButton:GetRegions())
 clockFlash.Show = function() TimeManagerClockTicker:SetTextColor(1, 0, 0) end
 clockFlash.Hide = function() TimeManagerClockTicker:SetTextColor(1, .8, 0) end
