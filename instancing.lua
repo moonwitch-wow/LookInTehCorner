@@ -3,8 +3,6 @@
 local _, class = UnitClass("player")
 local color = RAID_CLASS_COLORS[class]
 local id = CreateFrame("Frame", nil, UIParent)
-LookInTehCorner:RegisterEvent("PLAYER_ENTERING_WORLD")
-LookInTehCorner:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
 
 local idtext = id:CreateFontString(nil, "OVERLAY")
 idtext:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, -4)
@@ -58,3 +56,10 @@ function indiff()
 	end
 end
 id:SetScript("OnEvent", function() indiff() end)
+id:RegisterEvent"PLAYER_DIFFICULTY_CHANGED"
+id:RegisterEvent"UPDATE_INSTANCE_INFO"
+id:RegisterEvent"GROUP_ROSTER_UPDATE"
+id:RegisterEvent"PLAYER_GUILD_UPDATE"
+id:RegisterEvent"PARTY_MEMBER_ENABLE"
+id:RegisterEvent"PARTY_MEMBER_DISABLE"
+id:RegisterEvent"GUILD_PARTY_STATE_UPDATED"
