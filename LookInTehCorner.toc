@@ -1,7 +1,7 @@
-## Interface: 30100
+## Interface: 50400
 ## Title: Look In Teh Corner
 ## Author: MoonWitch
-## Version: 1.2
+## Version: 1.3
 ## X-eMail: kelly.crabbe@gmail.com
 ## X-Website: http://other-net.com
 ## X-Credits: Haste for his oMinimap which acted as the base. Lyn for the name!
