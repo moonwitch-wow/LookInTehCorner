@@ -58,8 +58,8 @@ function events:PLAYER_ENTERING_WORLD(...)
 
   --self:SetParent(Minimap)
   self:SetAllPoints(Minimap)
-  self:SetWidth(Minimap:GetWidth()*scale)
-  self:SetHeight(Minimap:GetHeight()*scale)
+  self:SetWidth(Minimap:GetWidth()*scale+1)
+  self:SetHeight(Minimap:GetHeight()*scale+1)
   self:SetFrameLevel(1)
   self:SetFrameStrata("BACKGROUND")
 
