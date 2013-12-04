@@ -15,4 +15,4 @@ compass.lua
 coordinates.lua
 #tooltip.lua
 rightclick.lua
-#instancing.lua
+instancing.lua
