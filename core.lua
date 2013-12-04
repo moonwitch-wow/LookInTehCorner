@@ -150,6 +150,9 @@ end
 
 
 -- Event handling
-LookInTehCorner:SetScript("OnEvent", function(self, event, ...) self[event](self) end)
-LookInTehCorner:RegisterEvent"PLAYER_LOGIN"
-LookInTehCorner:RegisterEvent"CALENDAR_UPDATE_PENDING_INVITES"
+LookInTehCorner:SetScript("OnEvent", function(self, event, ...)
+ events[event](self, ...) -- call one of the functions above
+end)
+LookInTehCorner:RegisterEvent"PLAYER_ENTERING_WORLD"
+-- LookInTehCorner:RegisterEvent"CALENDAR_UPDATE_PENDING_INVITES"
+-- LookInTehCorner:RegisterEvent"UPDATE_PENDING_MAIL"
