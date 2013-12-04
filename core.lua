@@ -133,13 +133,6 @@ function events:PLAYER_ENTERING_WORLD(...)
   MiniMapLFGFrame:SetHighlightTexture(nil)
   LFDSearchStatus:SetClampedToScreen(true)
 
-  --[[ Quest Watcher Frame
-  WatchFrame:ClearAllPoints()
-  WatchFrame.ClearAllPoints = function() end
-  WatchFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 20, -15)
-  WatchFrame.SetPoint = function() end
-  WatchFrame:SetClampedToScreen(true)
---]]
 -- Frame hiding
   for _, frame in pairs(frames) do
     frame:Hide()
