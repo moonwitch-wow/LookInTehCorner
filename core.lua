@@ -129,9 +129,15 @@ function events:PLAYER_ENTERING_WORLD(...)
   GuildInstanceDifficulty:SetScale(.7)
 
   -- LFG Eye
-  MiniMapLFGFrame:SetParent(Minimap)
-  MiniMapLFGFrame:SetHighlightTexture(nil)
-  LFDSearchStatus:SetClampedToScreen(true)
+  local function UpdateLFG()
+    MiniMapLFGFrame:ClearAllPoints()
+    MiniMapLFGFrame:Point("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 2, 1)
+    MiniMapLFGFrameBorder:Hide()
+    MiniMapLFGFrame:SetParent(Minimap)
+    MiniMapLFGFrame:SetHighlightTexture(nil)
+    LFDSearchStatus:SetClampedToScreen(true)
+  end
+  hooksecurefunc("EyeTemplate_OnUpdate", UpdateLFG)
 
 -- Frame hiding
   for _, frame in pairs(frames) do
