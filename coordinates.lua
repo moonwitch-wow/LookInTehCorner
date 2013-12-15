@@ -9,7 +9,7 @@ coordsf:SetHeight(12)
 coordsf:SetTextColor(1, .8, 0)
 coordsf:SetShadowColor(0, 0, 0, .7)
 coordsf:SetShadowOffset(1, -1)
-coordsf:SetFont(STANDARD_TEXT_FONT, 12, "THINOUTLINE")
+coordsf:SetFont(STANDARD_TEXT_FONT, 11)
 
 -- Coordinate functions DO NOT TOUCH
 local coords = function(self, elapsed)

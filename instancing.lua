@@ -6,7 +6,7 @@ local id = CreateFrame("Frame", nil, UIParent)
 
 local idtext = id:CreateFontString(nil, "OVERLAY")
 idtext:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, -4)
-idtext:SetFont("Fonts\\FRIZQT__.ttf", 14, "THINOUTLINE")
+idtext:SetFont(STANDARD_TEXT_FONT, 11)
 idtext:SetTextColor(color.r, color.g, color.b)
 
 local _, class = UnitClass("player")

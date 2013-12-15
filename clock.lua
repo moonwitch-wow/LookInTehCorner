@@ -36,7 +36,7 @@ TimeManagerClockButton:Show()
 select(1, TimeManagerClockButton:GetRegions()):Hide()
 
 TimeManagerClockTicker:SetPoint("CENTER", TimeManagerClockButton)
-TimeManagerClockTicker:SetFont(STANDARD_TEXT_FONT, 12, "THINOUTLINE")
+TimeManagerClockTicker:SetFont(STANDARD_TEXT_FONT, 11)
 TimeManagerClockTicker:SetTextColor(1, .8, 0)
 
 TimeManagerAlarmFiredTexture.Show = function() TimeManagerClockTicker:SetTextColor(1, 0, 0) end
