@@ -18,8 +18,8 @@ local backdrop = {
     edgeSize = 1,
     insets = { left = -1, right = -1, top = -1, bottom = -1}
   }
-local backdropColor = { r = .1, g = .1, b = .1, a = 1 }
-local borderColor = { r = .6, g = .6, b = .6, a = 1 }
+local backdropColor = { r = .1, g = .1, b = .1, a = .8 }
+local borderColor = { r = .3, g = .3, b = .3, a = .8 }
 local showZoneText = true -- true shows zonetext
 
 ------------------------------------------------------------------------
