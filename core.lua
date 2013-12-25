@@ -137,7 +137,6 @@ function events:PLAYER_LOGIN(...)
     MinimapZoneText:SetPoint("TOP", Minimap, "TOP", 0, -1)
     MinimapZoneText:SetFont(font, 10)
     MinimapZoneText:SetJustifyH("CENTER")
-    MinimapZoneText:SetTextColor(LookInTehCorner:GetLocTextColor())
   else
     MinimapZoneText:Hide()
   end
@@ -184,10 +183,16 @@ function events:PLAYER_LOGIN(...)
   self:UnregisterEvent"ADDON_LOADED"
 end
 
+function events:ZONE_CHANGED(...)
+
+  MinimapZoneText:SetTextColor(LookInTehCorner:GetLocTextColor())
+
+  self:RegisterEvent"ZONE_CHANGED_INDOORS"
+  self:RegisterEvent"ZONE_CHANGED_NEW_AREA"
+end
 
 -- Event handling
 LookInTehCorner:SetScript("OnEvent", function(self, event, ...)
  events[event](self, event, ...) -- call one of the functions above
 end)
 LookInTehCorner:RegisterEvent"PLAYER_LOGIN"
--- LookInTehCorner:RegisterEvent"UPDATE_PENDING_MAIL"
