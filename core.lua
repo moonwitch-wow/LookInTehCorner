@@ -112,11 +112,6 @@ function events:PLAYER_LOGIN(...)
   MiniMapTrackingIconOverlay:SetAlpha(0)
   MiniMapTrackingButtonBorder:Hide()
   MiniMapTracking:Hide()
-  -- MiniMapTrackingIcon:SetTexCoord(0.065, 0.935, 0.065, 0.935)
-  -- MiniMapTracking:SetParent(Minimap)
-  -- MiniMapTracking:ClearAllPoints()
-  -- MiniMapTracking:SetScale(.8)
-  -- MiniMapTracking:SetPoint("TOPLEFT", -2, 2)
 
 --[[ PvP Icon
   MiniMapBattlefieldFrame:SetParent(Minimap)
@@ -149,30 +144,18 @@ function events:PLAYER_LOGIN(...)
     WorldStateCaptureBar.ClearAllPoints = function() end
   end
 
-  -- shitty 3.3 flag to move
   MiniMapInstanceDifficulty:ClearAllPoints()
   MiniMapInstanceDifficulty:Hide()
-  -- MiniMapInstanceDifficulty:SetParent(Minimap)
-  -- MiniMapInstanceDifficulty:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, 0)
-  -- MiniMapInstanceDifficulty:SetScale(.7)
 
-  -- 4.0.6 Guild instance difficulty
   GuildInstanceDifficulty:ClearAllPoints()
   GuildInstanceDifficulty:Hide()
-  -- GuildInstanceDifficulty:SetParent(Minimap)
-  -- GuildInstanceDifficulty:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 0, 0)
-  -- GuildInstanceDifficulty:SetScale(.7)
 
   -- LFG Eye
-  local function UpdateLFG()
-    MiniMapLFGFrame:ClearAllPoints()
-    MiniMapLFGFrame:Point("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 2, 1)
-    MiniMapLFGFrameBorder:Hide()
-    MiniMapLFGFrame:SetParent(Minimap)
-    MiniMapLFGFrame:SetHighlightTexture(nil)
-    LFDSearchStatus:SetClampedToScreen(true)
-  end
-  hooksecurefunc("EyeTemplate_OnUpdate", UpdateLFG)
+  local lfg = MiniMapLFGFrame or QueueStatusMinimapButton
+  lfg:ClearAllPoints()
+  lfg:SetParent(Minimap)
+  lfg:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 1, -1)
+  lfg:SetHighlightTexture(nil)
 
 -- Frame hiding
   for _, frame in pairs(hiddenFrames) do
