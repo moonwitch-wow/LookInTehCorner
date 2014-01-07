@@ -12,12 +12,12 @@ idtext:SetTextColor(color.r, color.g, color.b)
 local _, class = UnitClass("player")
 local color = RAID_CLASS_COLORS[class]
 local id = CreateFrame("Frame", nil, UIParent)
-id:SetPoint("TOP", Minimap, "TOP")
+id:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT")
 id:RegisterEvent("PLAYER_ENTERING_WORLD")
 id:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
 
 local idtext = id:CreateFontString(nil, "OVERLAY")
-idtext:SetPoint("TOP", Minimap, "TOP", 0, -4)
+idtext:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, -4)
 idtext:SetFont("Fonts\\FRIZQT__.ttf", 14, "THINOUTLINE")
 idtext:SetTextColor(color.r, color.g, color.b)
 
