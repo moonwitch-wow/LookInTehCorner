@@ -94,9 +94,10 @@ function events:PLAYER_LOGIN(...)
   self:SetFrameLevel(1)
 
   -- Giving it a border
-  self:SetBackdrop(backdrop)
-  self:SetBackdropColor(backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a)
-  self:SetBackdropBorderColor(borderColor.r, borderColor.g, borderColor.b, borderColor.a)
+  CreateBorder(self, 15, borderColor.r, borderColor.g, borderColor.b, 1)
+  -- self:SetBackdrop(backdrop)
+  -- self:SetBackdropColor(backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a)
+  -- self:SetBackdropBorderColor(borderColor.r, borderColor.g, borderColor.b, borderColor.a)
 
 -- mousewheel scrolling
   Minimap:EnableMouseWheel()
