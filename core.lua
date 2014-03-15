@@ -18,8 +18,8 @@ local backdrop = {
     edgeSize = 1,
     insets = { left = -1, right = -1, top = -1, bottom = -1}
   }
-local backdropColor = { r = .1, g = .1, b = .1, a = .8 }
-local borderColor = { r = .3, g = .3, b = .3, a = .8 }
+local backdropColor = { r = .1, g = .1, b = .1, a = .9 }
+local borderColor = { r = .1, g = .1, b = .1, a = .9 }
 local showZoneText = true -- true shows zonetext
 
 ------------------------------------------------------------------------
@@ -94,10 +94,10 @@ function events:PLAYER_LOGIN(...)
   self:SetFrameLevel(1)
 
   -- Giving it a border
-  CreateBorder(self, 15, borderColor.r, borderColor.g, borderColor.b, 1)
-  -- self:SetBackdrop(backdrop)
-  -- self:SetBackdropColor(backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a)
-  -- self:SetBackdropBorderColor(borderColor.r, borderColor.g, borderColor.b, borderColor.a)
+  -- CreateBorder(self, 15, borderColor.r, borderColor.g, borderColor.b, 1)
+  self:SetBackdrop(backdrop)
+  self:SetBackdropColor(backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a)
+  self:SetBackdropBorderColor(borderColor.r, borderColor.g, borderColor.b, borderColor.a)
 
 -- mousewheel scrolling
   Minimap:EnableMouseWheel()
