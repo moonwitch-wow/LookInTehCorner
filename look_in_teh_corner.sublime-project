@@ -3,7 +3,11 @@
 	[
 		{
 			"follow_symlinks": true,
-			"path": "/Applications/World of Warcraft/Interface/AddOns/LookInTehCorner"
+			"path": "."
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Applications/World of Warcraft/Interface/AddOns/QuseMap"
 		}
 	]
 }
