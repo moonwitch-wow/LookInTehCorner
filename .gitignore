@@ -26,6 +26,7 @@ $RECYCLE.BIN/
 
 # SublimeText project files
 *.sublime-workspace
+*.sublime-project
 sftp-config*.json
 
 
