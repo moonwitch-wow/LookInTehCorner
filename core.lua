@@ -21,11 +21,16 @@ local backdrop = {
 local backdropColor = { r = .1, g = .1, b = .1, a = .9 }
 local borderColor = { r = .1, g = .1, b = .1, a = .9 }
 local showZoneText = true -- true shows zonetext
+local shape = "square"
 
 ------------------------------------------------------------------------
 -- Square maps ftw
 ------------------------------------------------------------------------
-function GetMinimapShape() return "SQUARE" end
+if shape == "topright" then
+  function GetMinimapShape() return "CORNER-BOTTOMLEFT" end
+else
+  function GetMinimapShape() return "SQUARE" end
+end
 
 -- Frame creation
 local LookInTehCorner, events = CreateFrame("Frame", "LookInTehCorner", Minimap), {}
@@ -84,17 +89,20 @@ function events:PLAYER_LOGIN(...)
   Minimap:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
   Minimap:SetFrameLevel(2)
   Minimap:SetScale(scale)
-  Minimap:SetMaskTexture("Interface\\ChatFrame\\ChatFrameBackground")
+  if shape == "topright" then
+    Minimap:SetMaskTexture("Interface\\AddOns\\LookInTehCorner\\media\\topright.blp")
+  else
+    Minimap:SetMaskTexture("Interface\\ChatFrame\\ChatFrameBackground")
+  end
 
   -- Why not use the Event Handler as border too?
   self:SetParent(Minimap)
-  self:SetPoint('CENTER')
-  self:SetWidth(Minimap:GetWidth()*scale+6)
-  self:SetHeight(Minimap:GetHeight()*scale+6)
+  self:SetPoint("CENTER")
+  self:SetWidth(Minimap:GetWidth()+2)
+  self:SetHeight(Minimap:GetHeight()+2)
   self:SetFrameLevel(1)
 
   -- Giving it a border
-  -- CreateBorder(self, 15, borderColor.r, borderColor.g, borderColor.b, 1)
   self:SetBackdrop(backdrop)
   self:SetBackdropColor(backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a)
   self:SetBackdropBorderColor(borderColor.r, borderColor.g, borderColor.b, borderColor.a)
