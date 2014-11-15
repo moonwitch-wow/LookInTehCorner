@@ -3,29 +3,31 @@
 ----------------------------------------------------------------------------------------
 local menuFrame = CreateFrame("Frame", "MinimapRightClickMenu", UIParent, "UIDropDownMenuTemplate")
 local menuList = {
-    {text = CHARACTER_BUTTON,
+    {text = "Character",
     func = function() ToggleCharacter("PaperDollFrame") end},
-    {text = SPELLBOOK_ABILITIES_BUTTON,
+    {text = "Spellbook",
     func = function() ToggleSpellBook("spell") end},
-    {text = TALENTS_BUTTON,
+    {text = "Talents",
     func = function() ToggleTalentFrame() end},
-    {text = ACHIEVEMENT_BUTTON,
+    {text = "Achievement",
     func = function() ToggleAchievementFrame() end},
-    {text = SOCIAL_BUTTON,
+    {text = "Social",
     func = function() ToggleFriendsFrame(1) end},
-    {text = PLAYER_V_PLAYER,
+    {text = "PvP",
     func = function() ToggleFrame(PVPParentFrame) end},
-    {text = LFG_TITLE,
+    {text = "LFG",
     func = function() ToggleFrame(LFDParentFrame) end},
-    {text = L_LFRAID,
+    {text = "LFRaid",
     func = function() ToggleFrame(LFRParentFrame) end},
-    {text = HELP_BUTTON,
-    func = function() ToggleHelpFrame() end},
-    {text = L_CALENDAR,
+    {text = "Garrison",
+    func = function() GarrisonLandingPage_Toggle() end},
+    {text = "Calendar",
     func = function()
     if(not CalendarFrame) then LoadAddOn("Blizzard_Calendar") end
         Calendar_Toggle()
     end},
+    {text = "Customer Support",
+    func = function() ToggleHelpFrame() end},
 }
 
 Minimap:SetScript("OnMouseDown", function(self, btn)
