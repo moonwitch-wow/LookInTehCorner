@@ -10,7 +10,7 @@
 -- Configuration and lessening the typing strains of the world.
 ------------------------------------------------------------------------
 local font = STANDARD_TEXT_FONT
-local scale = 1.1
+local scale = 1.2
 local backdrop = {
     bgFile = "Interface\\Buttons\\WHITE8x8",
     edgeFile = "Interface\\Buttons\\WHITE8x8",
@@ -51,6 +51,12 @@ local hiddenFrames = {
   MiniMapZoneTextButton,
   GameTimeFrame
 }
+
+-- Quick test
+-- Garrison icon
+GarrisonLandingPageMinimapButton:ClearAllPoints()
+GarrisonLandingPageMinimapButton:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 3, 2)
+GarrisonLandingPageMinimapButton:SetSize(32, 32)
 
 ------------------------------------------------------------------------
 -- Util funcs
