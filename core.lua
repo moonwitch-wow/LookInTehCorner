@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------
 --  Look In Teh Corner!  --
---  Big thanks to haste"s oMinimap on which this is based.
+--  Big thanks to haste's oMinimap on which this is based.
 --  I mainly added coordinates, changed some positions,
 --  but as per his copyright thingie, the addon has changed name.
 --  I would like to thank Lyn for the awesome name.
@@ -13,27 +13,18 @@ local font = STANDARD_TEXT_FONT
 local scale = 1.2
 local backdrop = {
     bgFile = "Interface\\Buttons\\WHITE8x8",
-    edgeFile = "Interface\\Buttons\\WHITE8x8",
-    tiled = true,
-    edgeSize = 1,
-    insets = { left = -1, right = -1, top = -1, bottom = -1}
+    insets = { left = -2, right = -2, top = -2, bottom = -2}
   }
 local backdropColor = { r = .1, g = .1, b = .1, a = .9 }
-local borderColor = { r = .1, g = .1, b = .1, a = .9 }
 local showZoneText = true -- true shows zonetext
-local shape = "square"
 
-------------------------------------------------------------------------
--- Square maps ftw
-------------------------------------------------------------------------
-if shape == "topright" then
-  function GetMinimapShape() return "CORNER-BOTTOMLEFT" end
-else
-  function GetMinimapShape() return "SQUARE" end
-end
+-- This is needed to properly ping the minimap
+function GetMinimapShape() return "SQUARE" end
 
--- Frame creation
-local LookInTehCorner, events = CreateFrame("Frame", "LookInTehCorner", Minimap), {}
+-- Frame creation and event handler
+local LookInTehCorner = CreateFrame("Frame", "LookInTehCorner", Minimap)
+LookInTehCorner:SetScript('OnEvent', function(self, event, ...) self[event](self, ...) end)
+LookInTehCorner:RegisterEvent"PLAYER_LOGIN"
 
 local hiddenFrames = {
   MinimapBorder,
@@ -51,12 +42,6 @@ local hiddenFrames = {
   MiniMapZoneTextButton,
   GameTimeFrame
 }
-
--- Quick test
--- Garrison icon
-GarrisonLandingPageMinimapButton:ClearAllPoints()
-GarrisonLandingPageMinimapButton:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 3, 2)
-GarrisonLandingPageMinimapButton:SetSize(32, 32)
 
 ------------------------------------------------------------------------
 -- Util funcs
@@ -83,37 +68,18 @@ end
 ------------------------------------------------------------------------
 -- PLAYER LOGIN func - the main shebang
 ------------------------------------------------------------------------
-function events:PLAYER_LOGIN(...)
-  -- Relocating minimap and allowing it to be moved
+function LookInTehCorner:PLAYER_LOGIN(...)
   Minimap:ClearAllPoints()
-  Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -10, -10)
-  Minimap:SetMovable(true)
-  Minimap:SetUserPlaced(true)
-  Minimap:EnableMouse(true)
-  Minimap:RegisterForDrag("LeftButton")
-  Minimap:SetScript("OnDragStart", function(self) self:StartMoving() end)
-  Minimap:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
-  Minimap:SetFrameLevel(2)
+  Minimap:SetParent(UIParent)
+  Minimap:SetPoint("TOPRIGHT", -10, -10)
+  Minimap:SetBackdrop(backdrop)
+  Minimap:SetBackdropColor(0, 0, 0)
   Minimap:SetScale(scale)
-  if shape == "topright" then
-    Minimap:SetMaskTexture("Interface\\AddOns\\LookInTehCorner\\media\\topright.blp")
-  else
-    Minimap:SetMaskTexture("Interface\\ChatFrame\\ChatFrameBackground")
-  end
+  Minimap:SetMaskTexture("Interface\\ChatFrame\\ChatFrameBackground")
+  Minimap:SetArchBlobRingScalar(0)
+  Minimap:SetQuestBlobRingScalar(0)
 
-  -- Why not use the Event Handler as border too?
-  self:SetParent(Minimap)
-  self:SetPoint("CENTER")
-  self:SetWidth(Minimap:GetWidth()+2)
-  self:SetHeight(Minimap:GetHeight()+2)
-  self:SetFrameLevel(1)
-
-  -- Giving it a border
-  self:SetBackdrop(backdrop)
-  self:SetBackdropColor(backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a)
-  self:SetBackdropBorderColor(borderColor.r, borderColor.g, borderColor.b, borderColor.a)
-
--- mousewheel scrolling
+  -- Scrolling with mousewheel
   Minimap:EnableMouseWheel()
   Minimap:SetScript("OnMouseWheel", function(self, dir)
     if(dir > 0) then
@@ -123,20 +89,27 @@ function events:PLAYER_LOGIN(...)
     end
   end)
 
--- Tracking menu changes
   MiniMapTrackingIconOverlay:SetAlpha(0)
   MiniMapTrackingButtonBorder:Hide()
   MiniMapTracking:Hide()
 
---[[ PvP Icon
-  MiniMapBattlefieldFrame:SetParent(Minimap)
-  MiniMapBattlefieldFrame:ClearAllPoints()
-  MiniMapBattlefieldFrame:SetPoint("TOPRIGHT", -2, -2)]]
-
 -- Mail icon changes
-  MiniMapMailIcon:SetTexture("Interface\\AddOns\\LookInTehCorner\\media\\mail") -- remove this line if you want the default mail icon to show
+  -- MiniMapMailIcon:SetTexture("Interface\\AddOns\\LookInTehCorner\\media\\mail") -- remove this line if you want the default mail icon to show
   MiniMapMailFrame:ClearAllPoints()
   MiniMapMailFrame:SetPoint("BOTTOM", Minimap,"BOTTOM", 0, -10)
+  MiniMapMailFrame:SetSize(50, 20)
+  MiniMapMailFrame:SetScale(1 / scale)
+  MiniMapMailIcon:SetTexture("")
+  MiniMapMailBorder:SetTexture("")
+  Minimap.mailText = MiniMapMailFrame:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
+  Minimap.mailText:SetPoint("BOTTOM")
+  Minimap.mailText:SetTextColor(1, 0.9, 0.8)
+  Minimap.mailText:SetText("Mail!")
+
+-- Garrison icon
+  GarrisonLandingPageMinimapButton:ClearAllPoints()
+  GarrisonLandingPageMinimapButton:SetPoint("TOPRIGHT", Minimap, 3, 2)
+  GarrisonLandingPageMinimapButton:SetSize(32, 32)
 
 -- Minimap zone text stuff.
   if (showZoneText == true) then
@@ -165,12 +138,9 @@ function events:PLAYER_LOGIN(...)
   GuildInstanceDifficulty:ClearAllPoints()
   GuildInstanceDifficulty:Hide()
 
-  -- LFG Eye
-  local lfg = MiniMapLFGFrame or QueueStatusMinimapButton
-  lfg:ClearAllPoints()
-  lfg:SetParent(Minimap)
-  lfg:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 1, -1)
-  lfg:SetHighlightTexture(nil)
+  QueueStatusMinimapButton:ClearAllPoints()
+  QueueStatusMinimapButton:SetParent(Minimap)
+  QueueStatusMinimapButton:SetPoint("TOPLEFT", Minimap, 1, -1)
 
 -- Frame hiding
   for _, frame in pairs(hiddenFrames) do
@@ -181,7 +151,7 @@ function events:PLAYER_LOGIN(...)
   self:UnregisterEvent"ADDON_LOADED"
 end
 
-function events:ZONE_CHANGED(...)
+function LookInTehCorner:ZONE_CHANGED(...)
 
   MinimapZoneText:SetTextColor(LookInTehCorner:GetLocTextColor())
 
@@ -189,8 +159,3 @@ function events:ZONE_CHANGED(...)
   self:RegisterEvent"ZONE_CHANGED_NEW_AREA"
 end
 
--- Event handling
-LookInTehCorner:SetScript("OnEvent", function(self, event, ...)
- events[event](self, event, ...) -- call one of the functions above
-end)
-LookInTehCorner:RegisterEvent"PLAYER_LOGIN"
