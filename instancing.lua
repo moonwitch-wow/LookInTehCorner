@@ -5,19 +5,19 @@ local color = RAID_CLASS_COLORS[class]
 local id = CreateFrame("Frame", nil, UIParent)
 
 local idtext = id:CreateFontString(nil, "OVERLAY")
-idtext:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, -4)
+idtext:SetPoint("RIGHT", Minimap, "RIGHT", 0, -4)
 idtext:SetFont(STANDARD_TEXT_FONT, 11)
 idtext:SetTextColor(color.r, color.g, color.b)
 
 local _, class = UnitClass("player")
 local color = RAID_CLASS_COLORS[class]
 local id = CreateFrame("Frame", nil, UIParent)
-id:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT")
+id:SetPoint("RIGHT", Minimap, "RIGHT")
 id:RegisterEvent("PLAYER_ENTERING_WORLD")
 id:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
 
 local idtext = id:CreateFontString(nil, "OVERLAY")
-idtext:SetPoint("TOPRIGHT", Minimap, "TOPRIGHT", 0, -4)
+idtext:SetPoint("RIGHT", Minimap, "RIGHT", 0, -4)
 idtext:SetFont("Fonts\\FRIZQT__.ttf", 14, "THINOUTLINE")
 idtext:SetTextColor(color.r, color.g, color.b)
 
