@@ -9,9 +9,14 @@
 ## X-Category: Map
 ## OptionalDeps: Blizzard_TimeManager
 
+libs\LibStub.lua
+libs\CallbackHandler-1.0.lua
+libs\LibDataBroker-1.1.lua
+libs\LibCargoShip-2.1.lua
+
 core.lua
 clock.lua
-compass.lua
+ldb.lua
 coordinates.lua
 #tooltip.lua
 rightclick.lua
