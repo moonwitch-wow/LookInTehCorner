@@ -40,7 +40,8 @@ local hiddenFrames = {
   MiniMapMailBorder,
   BattlegroundShine,
   MiniMapZoneTextButton,
-  GameTimeFrame
+  GameTimeFrame,
+  MinimapNorthTag
 }
 
 ------------------------------------------------------------------------
