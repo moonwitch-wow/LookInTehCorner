@@ -93,18 +93,20 @@ function LookInTehCorner:PLAYER_LOGIN(...)
   MiniMapTrackingButtonBorder:Hide()
   MiniMapTracking:Hide()
 
+  MinimapNorthTag:SetAlpha(0)
+
 -- Mail icon changes
-  -- MiniMapMailIcon:SetTexture("Interface\\AddOns\\LookInTehCorner\\media\\mail") -- remove this line if you want the default mail icon to show
+  MiniMapMailIcon:SetTexture("Interface\\AddOns\\LookInTehCorner\\media\\mail") -- remove this line if you want the default mail icon to show
   MiniMapMailFrame:ClearAllPoints()
-  MiniMapMailFrame:SetPoint("BOTTOM", Minimap,"BOTTOM", 0, -10)
+  MiniMapMailFrame:SetPoint("BOTTOM", Minimap,"BOTTOM", 0, 0)
   MiniMapMailFrame:SetSize(50, 20)
   MiniMapMailFrame:SetScale(1 / scale)
-  MiniMapMailIcon:SetTexture("")
+  -- MiniMapMailIcon:SetTexture("")
   MiniMapMailBorder:SetTexture("")
-  Minimap.mailText = MiniMapMailFrame:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
-  Minimap.mailText:SetPoint("BOTTOM")
-  Minimap.mailText:SetTextColor(1, 0.9, 0.8)
-  Minimap.mailText:SetText("Mail!")
+  -- Minimap.mailText = MiniMapMailFrame:CreateFontString(nil, "OVERLAY", "NumberFontNormal")
+  -- Minimap.mailText:SetPoint("BOTTOM")
+  -- Minimap.mailText:SetTextColor(1, 0.9, 0.8)
+  -- Minimap.mailText:SetText("Mail!")
 
 -- Garrison icon
   GarrisonLandingPageMinimapButton:ClearAllPoints()
