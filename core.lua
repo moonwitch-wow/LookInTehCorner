@@ -10,7 +10,7 @@
 -- Configuration and lessening the typing strains of the world.
 ------------------------------------------------------------------------
 local font = STANDARD_TEXT_FONT
-local scale = 1.2
+local scale = 1.1
 local backdrop = {
     bgFile = "Interface\\Buttons\\WHITE8x8",
     insets = { left = -2, right = -2, top = -2, bottom = -2}
