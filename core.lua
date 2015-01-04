@@ -112,12 +112,12 @@ function LookInTehCorner:PLAYER_LOGIN(...)
   GarrisonLandingPageMinimapButton:SetSize(32, 32)
 
 -- Minimap zone text stuff.
-  if (showZoneText == true) then
+  if (showZoneText) then
+    MinimapZoneText:SetParent(Minimap)
     MinimapZoneText:SetDrawLayer"OVERLAY"
     MinimapZoneText:ClearAllPoints()
-    MinimapZoneText:SetPoint("LEFT", Minimap, 5, 0)
-    MinimapZoneText:SetPoint("RIGHT", Minimap, -5, 0)
-    MinimapZoneText:SetPoint("TOP", Minimap, "TOP", 0, -1)
+    MinimapZoneText:SetPoint("TOPLEFT", Minimap, 5, 0)
+    MinimapZoneText:SetPoint("TOPRIGHT", Minimap, -5, 0)
     MinimapZoneText:SetFont(font, 10)
     MinimapZoneText:SetJustifyH("CENTER")
   else
