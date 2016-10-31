@@ -14,7 +14,7 @@ coordsf:SetFont(STANDARD_TEXT_FONT, 11)
 -- Coordinate functions DO NOT TOUCH
 local coords = function(self, elapsed)
 	local x, y = GetPlayerMapPosition('player')
-	coordsf:SetFormattedText('%.0f,%.0f', x * 100, y * 100)
+	coordsf:SetFormattedText("%.1f, %.1f", x and x*100 or 0, y and y*100 or 0)
 end
 
 -- doesn't work
