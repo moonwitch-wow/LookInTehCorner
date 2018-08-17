@@ -12,4 +12,4 @@ local block = LCS:CreateBlock{
     fontSize = 11
 }
 block:SetDataObject("DPS")
-block:SetPoint("TOP", Minimap, "BOTTOM", 0, 0)
+block:SetPoint("TOP", Minimap, "BOTTOM", 0, -15)

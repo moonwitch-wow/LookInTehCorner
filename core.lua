@@ -112,7 +112,10 @@ function LookInTehCorner:PLAYER_LOGIN(...)
 -- Garrison icon
   GarrisonLandingPageMinimapButton:ClearAllPoints()
   GarrisonLandingPageMinimapButton:SetPoint("TOPRIGHT", Minimap, 3, 2)
-  GarrisonLandingPageMinimapButton:SetSize(32, 32)
+  GarrisonLandingPageMinimapButton:SetScale(0.7)
+  GarrisonLandingPageMinimapButton:SetAlpha(0)
+  GarrisonLandingPageMinimapButton:SetScript('OnEnter', function(self) self:SetAlpha(100) end) -- Hover it Appears! Magic!!
+  GarrisonLandingPageMinimapButton:SetScript('OnLeave', function(self) self:SetAlpha(0) end) -- Hover Disapears!
 
 -- Minimap zone text stuff.
   if (showZoneText) then
@@ -161,4 +164,3 @@ function LookInTehCorner:ZONE_CHANGED(...)
   self:RegisterEvent"ZONE_CHANGED_INDOORS"
   self:RegisterEvent"ZONE_CHANGED_NEW_AREA"
 end
-

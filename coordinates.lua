@@ -1,4 +1,6 @@
 ﻿-- Coordinates for LookInTehCorner
+local GetPlayerMapPosition = C_Map.GetPlayerMapPosition
+local GetBestMapForUnit = C_Map.GetBestMapForUnit
 
 local Coords = CreateFrame('Button', nil, Minimap)
 local coordsf = Coords:CreateFontString(nil, 'OVERLAY')
@@ -12,9 +14,16 @@ coordsf:SetShadowOffset(1, -1)
 coordsf:SetFont(STANDARD_TEXT_FONT, 11)
 
 -- Coordinate functions DO NOT TOUCH
-local coords = function(self, elapsed)
-	local x, y = GetPlayerMapPosition('player')
-	coordsf:SetFormattedText("%.1f, %.1f", x and x*100 or 0, y and y*100 or 0)
+local updateCoords = function(self, elapsed)
+	local uiMapID = GetBestMapForUnit("player")
+	if uiMapID then
+		local tbl = GetPlayerMapPosition(uiMapID, "player")
+		if tbl then
+			coordsf:SetFormattedText("%.1f, %.1f", tbl.x*100, tbl.y*100)
+		else
+			coordsf:SetText("00.0, 00.0")
+		end
+	end
 end
 
 -- doesn't work
@@ -30,6 +39,6 @@ if (event == 'ZONE_CHANGED_NEW_AREA') then
    SetMapToCurrentZone()
 end
 
-Coords:SetScript('OnUpdate', coords)
+Coords:SetScript('OnUpdate', updateCoords)
 Coords:SetScript('OnClick', onClickCoord)
 Coords:RegisterEvent'ZONE_CHANGED_NEW_AREA'
